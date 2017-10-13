@@ -1,0 +1,183 @@
+<!-- ############################## <  VISTA DETALLE  > #####################################-->
+<!-- ############################## <  CatalogoNuevoDetalle.html  > #####################################-->
+<!-- ############################## <  VISTA GENERAL > #####################################-->
+
+
+<!-- INICIO PAGINA -->
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- INICIO CABECERA ################################################################################-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="icon" type="image/png" href="../img/k.ico" />
+	<!--#################### ESTILOS GENERALES #########################-->
+	{{template "styles_layout"}}
+	<!--#################### TUS ESTILOS ###############################-->
+
+	<!--#################### SCRIPTS GENERALES #########################-->
+	{{template "scripts_layout"}}
+	<!--#################### TUS SCRIPTS #########################-->
+	<script src="../../Locales/CatalogoNuevo/js/CatalogoNuevo.js"></script>
+	<!--#################### CABECERA #########################-->
+	{{template "header_layout" .SSesion }}
+</head>
+<!-- FINAL CABECERA ###################################################################################-->
+
+<!-- INICIO BODY -->
+
+<body>
+
+	{{template "menu_layout" }}
+
+	<section class="container" style="padding-bottom: 5%;" id="SeccionCuerpo">
+		{{if .SEstado}} {{if .SMsj}}
+		<div class="alert alert-success alert-dismissible text-center" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong><h3>{{.SMsj}}</h3></strong>
+		</div>
+		{{end}} {{else}} {{if .SMsj}}
+		<div class="alert alert-danger alert-dismissible text-center" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong><h3>{{.SMsj}}</h3></strong>
+		</div>
+		{{end}} {{end}}
+
+		<form id="Form_Detalle_CatalogoNuevo" class="form-horizontal" method="POST">
+			<div class="row">
+				<div class="col-md-5">
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="row">
+								<h3 class="text-center">Detalles principales del Catálogo</h3>
+							</div>
+						</div>
+						<div class="panel-body">
+							<input type="text" id="ID" name="ID" value="{{.CatalogoNuevo.ID.Hex}}" hidden />
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="Clave">Clave:</label> {{if .CatalogoNuevo.EClaveCatalogoNuevo.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="Clave" id="Clave" class="form-control" value="{{.CatalogoNuevo.EClaveCatalogoNuevo.Clave}}" aria-required="true"
+									 aria-describedby="Clave-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="Clave-error" class="error help-block">{{.CatalogoNuevo.EClaveCatalogoNuevo.IMsj}}</em>
+								</div>
+								{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="Clave" id="Clave" class="form-control" value="{{.CatalogoNuevo.EClaveCatalogoNuevo.Clave}}" readonly>
+								</div>
+								{{end}}
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="Nombre">Nombre:</label> {{if .CatalogoNuevo.ENombreCatalogoNuevo.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="Nombre" id="Nombre" class="form-control" value="{{.CatalogoNuevo.ENombreCatalogoNuevo.Nombre}}"
+									 aria-required="true" aria-describedby="Nombre-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="Nombre-error" class="error help-block">{{.CatalogoNuevo.ENombreCatalogoNuevo.IMsj}}</em>
+								</div>
+								{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="Nombre" id="Nombre" class="form-control" value="{{.CatalogoNuevo.ENombreCatalogoNuevo.Nombre}}"
+									 readonly>
+								</div>
+								{{end}}
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="Descripcion">Descripcion:</label> {{if .CatalogoNuevo.EDescripcionCatalogoNuevo.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<textarea class="form-control" rows="4" id="Descripcion" name="Descripcion" placeholder="Descripcion del CatalogoNuevo..."
+									 style="width: 100%" aria-required="true" aria-describedby="Descripcion-error" aria-invalid="true" readonly>{{.CatalogoNuevo.EDescripcionCatalogoNuevo.Descripcion}}</textarea>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="Descripcion-error" class="error help-block">{{.CatalogoNuevo.EDescripcionCatalogoNuevo.IMsj}}</em>
+								</div>
+								{{else}}
+								<div class="col-sm-5">
+									<textarea class="form-control" rows="4" id="Descripcion" name="Descripcion" placeholder="Descripcion del CatalogoNuevo..."
+									 style="width: 100%" readonly>{{.CatalogoNuevo.EDescripcionCatalogoNuevo.Descripcion}}</textarea>
+								</div>
+								{{end}}
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="CatalogoEditable">CatalogoEditable:</label>
+								<div class="col-sm-5">
+									{{if .CatalogoNuevo.ECatalogoEditableCatalogoNuevo.CatalogoEditable}}
+									<input type="checkbox" id="CatalogoEditable" name="CatalogoEditable" class="custom-control-input radiogaga" checked readonly>									{{else}}
+									<input type="checkbox" id="CatalogoEditable" name="CatalogoEditable" class="custom-control-input radiogaga"> {{end}}
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" for="EstatusCatalogo">EstatusCatalogo:</label> {{if .CatalogoNuevo.EEstatusCatalogoCatalogoNuevo.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<select id="EstatusCatalogo" name="EstatusCatalogo" class="form-control selectpicker" aria-required="true" aria-describedby="EstatusCatalogo-error"
+									 aria-invalid="true" readonly>
+								{{.CatalogoNuevo.EEstatusCatalogoCatalogoNuevo.Ihtml}}
+								</select>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="EstatusCatalogo-error" class="error help-block">{{.CatalogoNuevo.EEstatusCatalogoCatalogoNuevo.IMsj}}</em>
+								</div>
+								{{else}}
+								<div class="col-sm-5">
+									<select id="EstatusCatalogo" name="EstatusCatalogo" class="form-control selectpicker" readonly>
+									{{.CatalogoNuevo.EEstatusCatalogoCatalogoNuevo.Ihtml}}
+								</select>
+								</div>
+								{{end}}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-7">
+					<div class="panel">
+						<div class="panel-heading">
+							<div class="row">
+								<h3 class="text-center">Elementos del catalogo</h3>
+							</div>
+						</div>
+						<div class="panel-body" style="width: 700px; height: 350px; overflow-y: scroll;">
+							<div class="table-responsive" id="Elementos">
+								<table id="div_tabla_catalogo" class="table table-responsive table-striped table-hover table-condenced table-bordered">
+									<thead class="thead-inverse">
+										<tr>
+											<th>Dato</th>
+											<th>Subclave</th>
+											<th>Editable</th>
+											<th>Default</th>
+											<th>Estatus</th>
+										</tr>
+									</thead>
+									<tbody id="tbody_elementos_catalogo">{{.CatalogoNuevo.EElementosCatalogoNuevo.Ihtml}}</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-12 text-right">
+							<button type="button" onclick="window.location.href = '/CatalogoNuevos';" class="btn btn-default btn-lg">Index</button>
+							<button type="button" onclick="EditaCatalogoNuevo('Detalle')" class="btn btn-primary btn-lg">Edita</button>
+							<button type="button" onclick="window.location.href = '/CatalogoNuevos/alta';" class="btn btn-success btn-lg">Nuevo</button>
+						</div>
+					</div>
+				</div>
+		</form>
+	</section>
+</body>
+
+<footer>
+
+	{{template "footer_layout"}}
+
+</footer>
+
+<!-- FIN BODY -->
+
+<!-- FIN PAGINA -->
+
+</html>

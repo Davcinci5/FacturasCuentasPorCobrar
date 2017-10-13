@@ -1,0 +1,546 @@
+
+<!-- ############################## <  VISTA DETALLE  > #####################################-->
+<!-- ############################## <  CuentasPorCobrarDetalle.html  > #####################################-->
+<!-- ############################## <  VISTA GENERAL > #####################################-->
+
+
+<!-- INICIO PAGINA -->
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- INICIO CABECERA ################################################################################-->
+<head>
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content ="IE=edge">
+        <title></title>
+		<link rel="icon" type="image/png" href="../img/k.ico" />
+<!--#################### ESTILOS GENERALES #########################-->
+		{{template "styles_layout"}}
+<!--#################### TUS ESTILOS ###############################-->
+
+<!--#################### SCRIPTS GENERALES #########################-->
+		{{template "scripts_layout"}}
+<!--#################### TUS SCRIPTS #########################-->
+    	<script src="../../Locales/CuentasPorCobrar/js/CuentasPorCobrar.js"></script>
+<!--#################### CABECERA #########################-->
+        {{template "header_layout" .SSesion }}
+</head>
+<!-- FINAL CABECERA ###################################################################################-->
+
+<!-- INICIO BODY -->
+<body>
+
+ {{template "menu_layout" }}
+
+	<div class="col-md-10"  style="padding-bottom: 5%;" id="SeccionCuerpo">
+		{{if .SEstado}}
+			{{if .SMsj}}
+				<div class="alert alert-success alert-dismissible text-center" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<strong><h3>{{.SMsj}}</h3></strong>
+				</div>
+			{{end}}
+
+		{{else}}
+
+			{{if .SMsj}}
+				<div class="alert alert-danger alert-dismissible text-center" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<strong><h3>{{.SMsj}}</h3></strong>
+				</div>
+			{{end}}
+		{{end}}
+
+			<h1>Detalle de CuentasPorCobrars</h1>
+			<form id="Form_Detalle_CuentasPorCobrar" class="form-horizontal" method="POST">
+
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    NUMCFD ">    NUMCFD :</label>
+							{{if .CuentasPorCobrar.E    NUMCFD CuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    NUMCFD " id="    NUMCFD " class="form-control" value="{{.CuentasPorCobrar.E    NUMCFD CuentasPorCobrar.    NUMCFD }}" aria-required="true" aria-describedby="    NUMCFD -error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    NUMCFD -error" class="error help-block">{{.CuentasPorCobrar.E    NUMCFD CuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    NUMCFD " id="    NUMCFD " class="form-control" value="{{.CuentasPorCobrar.E    NUMCFD CuentasPorCobrar.    NUMCFD }}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    SERIE ">    SERIE :</label>
+							{{if .CuentasPorCobrar.E    SERIE CuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    SERIE " id="    SERIE " class="form-control" value="{{.CuentasPorCobrar.E    SERIE CuentasPorCobrar.    SERIE }}" aria-required="true" aria-describedby="    SERIE -error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    SERIE -error" class="error help-block">{{.CuentasPorCobrar.E    SERIE CuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    SERIE " id="    SERIE " class="form-control" value="{{.CuentasPorCobrar.E    SERIE CuentasPorCobrar.    SERIE }}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    FOLIO">    FOLIO:</label>
+							{{if .CuentasPorCobrar.E    FOLIOCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    FOLIO" id="    FOLIO" class="form-control" value="{{.CuentasPorCobrar.E    FOLIOCuentasPorCobrar.    FOLIO}}" aria-required="true" aria-describedby="    FOLIO-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    FOLIO-error" class="error help-block">{{.CuentasPorCobrar.E    FOLIOCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    FOLIO" id="    FOLIO" class="form-control" value="{{.CuentasPorCobrar.E    FOLIOCuentasPorCobrar.    FOLIO}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    FECHA">    FECHA:</label>
+							{{if .CuentasPorCobrar.E    FECHACuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    FECHA" id="    FECHA" class="form-control" value="{{.CuentasPorCobrar.E    FECHACuentasPorCobrar.    FECHA}}" aria-required="true" aria-describedby="    FECHA-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    FECHA-error" class="error help-block">{{.CuentasPorCobrar.E    FECHACuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    FECHA" id="    FECHA" class="form-control" value="{{.CuentasPorCobrar.E    FECHACuentasPorCobrar.    FECHA}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    NUMCTE">    NUMCTE:</label>
+							{{if .CuentasPorCobrar.E    NUMCTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    NUMCTE" id="    NUMCTE" class="form-control" value="{{.CuentasPorCobrar.E    NUMCTECuentasPorCobrar.    NUMCTE}}" aria-required="true" aria-describedby="    NUMCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    NUMCTE-error" class="error help-block">{{.CuentasPorCobrar.E    NUMCTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    NUMCTE" id="    NUMCTE" class="form-control" value="{{.CuentasPorCobrar.E    NUMCTECuentasPorCobrar.    NUMCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    RFC">    RFC:</label>
+							{{if .CuentasPorCobrar.E    RFCCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    RFC" id="    RFC" class="form-control" value="{{.CuentasPorCobrar.E    RFCCuentasPorCobrar.    RFC}}" aria-required="true" aria-describedby="    RFC-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    RFC-error" class="error help-block">{{.CuentasPorCobrar.E    RFCCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    RFC" id="    RFC" class="form-control" value="{{.CuentasPorCobrar.E    RFCCuentasPorCobrar.    RFC}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    SUBTOTAL">    SUBTOTAL:</label>
+							{{if .CuentasPorCobrar.E    SUBTOTALCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    SUBTOTAL" id="    SUBTOTAL" class="form-control" value="{{.CuentasPorCobrar.E    SUBTOTALCuentasPorCobrar.    SUBTOTAL}}" aria-required="true" aria-describedby="    SUBTOTAL-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    SUBTOTAL-error" class="error help-block">{{.CuentasPorCobrar.E    SUBTOTALCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    SUBTOTAL" id="    SUBTOTAL" class="form-control" value="{{.CuentasPorCobrar.E    SUBTOTALCuentasPorCobrar.    SUBTOTAL}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    DESCUENTO">    DESCUENTO:</label>
+							{{if .CuentasPorCobrar.E    DESCUENTOCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    DESCUENTO" id="    DESCUENTO" class="form-control" value="{{.CuentasPorCobrar.E    DESCUENTOCuentasPorCobrar.    DESCUENTO}}" aria-required="true" aria-describedby="    DESCUENTO-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    DESCUENTO-error" class="error help-block">{{.CuentasPorCobrar.E    DESCUENTOCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    DESCUENTO" id="    DESCUENTO" class="form-control" value="{{.CuentasPorCobrar.E    DESCUENTOCuentasPorCobrar.    DESCUENTO}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    IMPUESTO">    IMPUESTO:</label>
+							{{if .CuentasPorCobrar.E    IMPUESTOCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    IMPUESTO" id="    IMPUESTO" class="form-control" value="{{.CuentasPorCobrar.E    IMPUESTOCuentasPorCobrar.    IMPUESTO}}" aria-required="true" aria-describedby="    IMPUESTO-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    IMPUESTO-error" class="error help-block">{{.CuentasPorCobrar.E    IMPUESTOCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    IMPUESTO" id="    IMPUESTO" class="form-control" value="{{.CuentasPorCobrar.E    IMPUESTOCuentasPorCobrar.    IMPUESTO}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    IEPS">    IEPS:</label>
+							{{if .CuentasPorCobrar.E    IEPSCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    IEPS" id="    IEPS" class="form-control" value="{{.CuentasPorCobrar.E    IEPSCuentasPorCobrar.    IEPS}}" aria-required="true" aria-describedby="    IEPS-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    IEPS-error" class="error help-block">{{.CuentasPorCobrar.E    IEPSCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    IEPS" id="    IEPS" class="form-control" value="{{.CuentasPorCobrar.E    IEPSCuentasPorCobrar.    IEPS}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    TIPOCOMP">    TIPOCOMP:</label>
+							{{if .CuentasPorCobrar.E    TIPOCOMPCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    TIPOCOMP" id="    TIPOCOMP" class="form-control" value="{{.CuentasPorCobrar.E    TIPOCOMPCuentasPorCobrar.    TIPOCOMP}}" aria-required="true" aria-describedby="    TIPOCOMP-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    TIPOCOMP-error" class="error help-block">{{.CuentasPorCobrar.E    TIPOCOMPCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    TIPOCOMP" id="    TIPOCOMP" class="form-control" value="{{.CuentasPorCobrar.E    TIPOCOMPCuentasPorCobrar.    TIPOCOMP}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    STATUS">    STATUS:</label>
+							{{if .CuentasPorCobrar.E    STATUSCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    STATUS" id="    STATUS" class="form-control" value="{{.CuentasPorCobrar.E    STATUSCuentasPorCobrar.    STATUS}}" aria-required="true" aria-describedby="    STATUS-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    STATUS-error" class="error help-block">{{.CuentasPorCobrar.E    STATUSCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    STATUS" id="    STATUS" class="form-control" value="{{.CuentasPorCobrar.E    STATUSCuentasPorCobrar.    STATUS}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    FORPAG">    FORPAG:</label>
+							{{if .CuentasPorCobrar.E    FORPAGCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    FORPAG" id="    FORPAG" class="form-control" value="{{.CuentasPorCobrar.E    FORPAGCuentasPorCobrar.    FORPAG}}" aria-required="true" aria-describedby="    FORPAG-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    FORPAG-error" class="error help-block">{{.CuentasPorCobrar.E    FORPAGCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    FORPAG" id="    FORPAG" class="form-control" value="{{.CuentasPorCobrar.E    FORPAGCuentasPorCobrar.    FORPAG}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    HORA">    HORA:</label>
+							{{if .CuentasPorCobrar.E    HORACuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    HORA" id="    HORA" class="form-control" value="{{.CuentasPorCobrar.E    HORACuentasPorCobrar.    HORA}}" aria-required="true" aria-describedby="    HORA-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    HORA-error" class="error help-block">{{.CuentasPorCobrar.E    HORACuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    HORA" id="    HORA" class="form-control" value="{{.CuentasPorCobrar.E    HORACuentasPorCobrar.    HORA}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    NUMALM">    NUMALM:</label>
+							{{if .CuentasPorCobrar.E    NUMALMCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    NUMALM" id="    NUMALM" class="form-control" value="{{.CuentasPorCobrar.E    NUMALMCuentasPorCobrar.    NUMALM}}" aria-required="true" aria-describedby="    NUMALM-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    NUMALM-error" class="error help-block">{{.CuentasPorCobrar.E    NUMALMCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    NUMALM" id="    NUMALM" class="form-control" value="{{.CuentasPorCobrar.E    NUMALMCuentasPorCobrar.    NUMALM}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    STATUS2">    STATUS2:</label>
+							{{if .CuentasPorCobrar.E    STATUS2CuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    STATUS2" id="    STATUS2" class="form-control" value="{{.CuentasPorCobrar.E    STATUS2CuentasPorCobrar.    STATUS2}}" aria-required="true" aria-describedby="    STATUS2-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    STATUS2-error" class="error help-block">{{.CuentasPorCobrar.E    STATUS2CuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    STATUS2" id="    STATUS2" class="form-control" value="{{.CuentasPorCobrar.E    STATUS2CuentasPorCobrar.    STATUS2}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    TYPECFD">    TYPECFD:</label>
+							{{if .CuentasPorCobrar.E    TYPECFDCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    TYPECFD" id="    TYPECFD" class="form-control" value="{{.CuentasPorCobrar.E    TYPECFDCuentasPorCobrar.    TYPECFD}}" aria-required="true" aria-describedby="    TYPECFD-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    TYPECFD-error" class="error help-block">{{.CuentasPorCobrar.E    TYPECFDCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    TYPECFD" id="    TYPECFD" class="form-control" value="{{.CuentasPorCobrar.E    TYPECFDCuentasPorCobrar.    TYPECFD}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    NOMCTE">    NOMCTE:</label>
+							{{if .CuentasPorCobrar.E    NOMCTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    NOMCTE" id="    NOMCTE" class="form-control" value="{{.CuentasPorCobrar.E    NOMCTECuentasPorCobrar.    NOMCTE}}" aria-required="true" aria-describedby="    NOMCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    NOMCTE-error" class="error help-block">{{.CuentasPorCobrar.E    NOMCTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    NOMCTE" id="    NOMCTE" class="form-control" value="{{.CuentasPorCobrar.E    NOMCTECuentasPorCobrar.    NOMCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    DIRCTE">    DIRCTE:</label>
+							{{if .CuentasPorCobrar.E    DIRCTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    DIRCTE" id="    DIRCTE" class="form-control" value="{{.CuentasPorCobrar.E    DIRCTECuentasPorCobrar.    DIRCTE}}" aria-required="true" aria-describedby="    DIRCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    DIRCTE-error" class="error help-block">{{.CuentasPorCobrar.E    DIRCTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    DIRCTE" id="    DIRCTE" class="form-control" value="{{.CuentasPorCobrar.E    DIRCTECuentasPorCobrar.    DIRCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    NLICTE">    NLICTE:</label>
+							{{if .CuentasPorCobrar.E    NLICTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    NLICTE" id="    NLICTE" class="form-control" value="{{.CuentasPorCobrar.E    NLICTECuentasPorCobrar.    NLICTE}}" aria-required="true" aria-describedby="    NLICTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    NLICTE-error" class="error help-block">{{.CuentasPorCobrar.E    NLICTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    NLICTE" id="    NLICTE" class="form-control" value="{{.CuentasPorCobrar.E    NLICTECuentasPorCobrar.    NLICTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    NLECTE">    NLECTE:</label>
+							{{if .CuentasPorCobrar.E    NLECTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    NLECTE" id="    NLECTE" class="form-control" value="{{.CuentasPorCobrar.E    NLECTECuentasPorCobrar.    NLECTE}}" aria-required="true" aria-describedby="    NLECTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    NLECTE-error" class="error help-block">{{.CuentasPorCobrar.E    NLECTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    NLECTE" id="    NLECTE" class="form-control" value="{{.CuentasPorCobrar.E    NLECTECuentasPorCobrar.    NLECTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    COLCTE">    COLCTE:</label>
+							{{if .CuentasPorCobrar.E    COLCTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    COLCTE" id="    COLCTE" class="form-control" value="{{.CuentasPorCobrar.E    COLCTECuentasPorCobrar.    COLCTE}}" aria-required="true" aria-describedby="    COLCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    COLCTE-error" class="error help-block">{{.CuentasPorCobrar.E    COLCTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    COLCTE" id="    COLCTE" class="form-control" value="{{.CuentasPorCobrar.E    COLCTECuentasPorCobrar.    COLCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    POBCTE">    POBCTE:</label>
+							{{if .CuentasPorCobrar.E    POBCTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    POBCTE" id="    POBCTE" class="form-control" value="{{.CuentasPorCobrar.E    POBCTECuentasPorCobrar.    POBCTE}}" aria-required="true" aria-describedby="    POBCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    POBCTE-error" class="error help-block">{{.CuentasPorCobrar.E    POBCTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    POBCTE" id="    POBCTE" class="form-control" value="{{.CuentasPorCobrar.E    POBCTECuentasPorCobrar.    POBCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    EDOCTE">    EDOCTE:</label>
+							{{if .CuentasPorCobrar.E    EDOCTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    EDOCTE" id="    EDOCTE" class="form-control" value="{{.CuentasPorCobrar.E    EDOCTECuentasPorCobrar.    EDOCTE}}" aria-required="true" aria-describedby="    EDOCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    EDOCTE-error" class="error help-block">{{.CuentasPorCobrar.E    EDOCTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    EDOCTE" id="    EDOCTE" class="form-control" value="{{.CuentasPorCobrar.E    EDOCTECuentasPorCobrar.    EDOCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    MUNCTE">    MUNCTE:</label>
+							{{if .CuentasPorCobrar.E    MUNCTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    MUNCTE" id="    MUNCTE" class="form-control" value="{{.CuentasPorCobrar.E    MUNCTECuentasPorCobrar.    MUNCTE}}" aria-required="true" aria-describedby="    MUNCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    MUNCTE-error" class="error help-block">{{.CuentasPorCobrar.E    MUNCTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    MUNCTE" id="    MUNCTE" class="form-control" value="{{.CuentasPorCobrar.E    MUNCTECuentasPorCobrar.    MUNCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    PAISCTE">    PAISCTE:</label>
+							{{if .CuentasPorCobrar.E    PAISCTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    PAISCTE" id="    PAISCTE" class="form-control" value="{{.CuentasPorCobrar.E    PAISCTECuentasPorCobrar.    PAISCTE}}" aria-required="true" aria-describedby="    PAISCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    PAISCTE-error" class="error help-block">{{.CuentasPorCobrar.E    PAISCTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    PAISCTE" id="    PAISCTE" class="form-control" value="{{.CuentasPorCobrar.E    PAISCTECuentasPorCobrar.    PAISCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    CPCTE">    CPCTE:</label>
+							{{if .CuentasPorCobrar.E    CPCTECuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    CPCTE" id="    CPCTE" class="form-control" value="{{.CuentasPorCobrar.E    CPCTECuentasPorCobrar.    CPCTE}}" aria-required="true" aria-describedby="    CPCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    CPCTE-error" class="error help-block">{{.CuentasPorCobrar.E    CPCTECuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    CPCTE" id="    CPCTE" class="form-control" value="{{.CuentasPorCobrar.E    CPCTECuentasPorCobrar.    CPCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    NUMMON">    NUMMON:</label>
+							{{if .CuentasPorCobrar.E    NUMMONCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    NUMMON" id="    NUMMON" class="form-control" value="{{.CuentasPorCobrar.E    NUMMONCuentasPorCobrar.    NUMMON}}" aria-required="true" aria-describedby="    NUMMON-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    NUMMON-error" class="error help-block">{{.CuentasPorCobrar.E    NUMMONCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    NUMMON" id="    NUMMON" class="form-control" value="{{.CuentasPorCobrar.E    NUMMONCuentasPorCobrar.    NUMMON}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    FORPAG2">    FORPAG2:</label>
+							{{if .CuentasPorCobrar.E    FORPAG2CuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    FORPAG2" id="    FORPAG2" class="form-control" value="{{.CuentasPorCobrar.E    FORPAG2CuentasPorCobrar.    FORPAG2}}" aria-required="true" aria-describedby="    FORPAG2-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    FORPAG2-error" class="error help-block">{{.CuentasPorCobrar.E    FORPAG2CuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    FORPAG2" id="    FORPAG2" class="form-control" value="{{.CuentasPorCobrar.E    FORPAG2CuentasPorCobrar.    FORPAG2}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    NUMEYS">    NUMEYS:</label>
+							{{if .CuentasPorCobrar.E    NUMEYSCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    NUMEYS" id="    NUMEYS" class="form-control" value="{{.CuentasPorCobrar.E    NUMEYSCuentasPorCobrar.    NUMEYS}}" aria-required="true" aria-describedby="    NUMEYS-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    NUMEYS-error" class="error help-block">{{.CuentasPorCobrar.E    NUMEYSCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    NUMEYS" id="    NUMEYS" class="form-control" value="{{.CuentasPorCobrar.E    NUMEYSCuentasPorCobrar.    NUMEYS}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="    STSCON">    STSCON:</label>
+							{{if .CuentasPorCobrar.E    STSCONCuentasPorCobrar.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="    STSCON" id="    STSCON" class="form-control" value="{{.CuentasPorCobrar.E    STSCONCuentasPorCobrar.    STSCON}}" aria-required="true" aria-describedby="    STSCON-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="    STSCON-error" class="error help-block">{{.CuentasPorCobrar.E    STSCONCuentasPorCobrar.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="    STSCON" id="    STSCON" class="form-control" value="{{.CuentasPorCobrar.E    STSCONCuentasPorCobrar.    STSCON}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+
+
+				<div class="form-group">
+					<div class="col-md-9 text-right">
+							<button type="button" onclick="window.location.href = '/CuentasPorCobrars';" class="btn btn-default btn-lg">Index</button>
+							<button type="button" onclick="EditaCuentasPorCobrar('Detalle')" class="btn btn-primary btn-lg">Edita</button>
+							<button type="button" onclick="window.location.href = '/CuentasPorCobrars/alta';" class="btn btn-success btn-lg">Nuevo</button>
+					</div>
+				</div>
+		</form>
+	</div>
+</body>
+
+<footer>
+
+	{{template "footer_layout"}}
+
+</footer>
+
+<!-- FIN BODY -->
+
+<!-- FIN PAGINA -->
+</html>
