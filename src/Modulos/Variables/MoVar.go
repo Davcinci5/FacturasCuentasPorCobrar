@@ -69,7 +69,10 @@ const (
 	ColeccionProductoServicios = "ProductoServicios"
 
 	//ColeccionCuentasPorCobrar nombre de la coleccion de CuentasPorCobrar en mongo
-	ColeccionCuentasPorCobrar = "CuentasPorCobrar"
+	ColeccionCuentasPorCobrar = "MAEMOVCFD"
+
+	//ColeccionDetalleCuentasPorCobrarVisorus nombre de la coleccion de DetalleCuentasPorCobrarVisorus en mongo
+	ColeccionDetalleCuentasPorCobrarVisorus = "MAEDTMCFD"
 
 	//##########################<CATÁLOGOS DEL SISTEMA>######################
 
@@ -122,6 +125,9 @@ const (
 
 	//TipoCuentasPorCobrar tipo a manejar en elastic
 	TipoCuentasPorCobrar = "CuentasPorCobrar"
+
+	//TipoDetalleCuentasPorCobrarVisorus tipo a manejar en elastic
+	TipoDetalleCuentasPorCobrarVisorus = "DetalleCuentasPorCobrarVisorus"
 
 	// * -----------------------CLAVES DE CATALOGO ------------------- * //
 

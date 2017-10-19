@@ -5,11 +5,12 @@ import (
 
 	"./src/Controladores/CatalogoControler"
 	"./src/Controladores/CuentasPorCobrarControler"
+	"./src/Controladores/DatosFacturaControler"
+	"./src/Controladores/DetalleCuentasPorCobrarVisorusControler"
 	"./src/Controladores/EmpresaControler"
 	"./src/Controladores/HTTPErrorsControler"
 	"./src/Controladores/IndexControler"
 	"./src/Modulos/Variables"
-
 	"gopkg.in/kataras/iris.v6"
 	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 	"gopkg.in/kataras/iris.v6/adaptors/sessions"
@@ -125,8 +126,25 @@ func main() {
 	app.Get("/CuentasPorCobrars/detalle/:ID", CuentasPorCobrarControler.DetalleGet)
 	app.Post("/CuentasPorCobrars/detalle/:ID", CuentasPorCobrarControler.DetallePost)
 
-	//###################### Otros #####################################
+	//###################### DetalleCuentasPorCobrarVisorus ################################
+	//Index (Búsqueda)
+	app.Get("/DetalleCuentasPorCobrarVisoruss", DetalleCuentasPorCobrarVisorusControler.IndexGet)
+	app.Post("/DetalleCuentasPorCobrarVisorus/CargaIndex/:ID", DetalleCuentasPorCobrarVisorusControler.CargaIndex)
+	app.Post("/DetalleCuentasPorCobrarVisorus/CargaIndexEspecifico", DetalleCuentasPorCobrarVisorusControler.CargaIndexEspecifico)
+	//app.Post("/DetalleCuentasPorCobrarVisoruss", DetalleCuentasPorCobrarVisorusControler.IndexPost)
+	//app.Post("/DetalleCuentasPorCobrarVisoruss/search", DetalleCuentasPorCobrarVisorusControler.BuscaPagina)
+	//app.Post("/DetalleCuentasPorCobrarVisoruss/agrupa", DetalleCuentasPorCobrarVisorusControler.MuestraIndexPorGrupo)
 
+	//Detalle
+	app.Get("/DetalleCuentasPorCobrarVisoruss/detalle", DetalleCuentasPorCobrarVisorusControler.DetalleGet)
+	app.Post("/DetalleCuentasPorCobrarVisoruss/detalle", DetalleCuentasPorCobrarVisorusControler.DetallePost)
+	app.Get("/DetalleCuentasPorCobrarVisoruss/detalle/:ID", DetalleCuentasPorCobrarVisorusControler.DetalleGet)
+	app.Post("/DetalleCuentasPorCobrarVisoruss/detalle/:ID", DetalleCuentasPorCobrarVisorusControler.DetallePost)
+
+	//###################### DatosFactura #####################################
+
+	app.Get("/DatosFactura/alta/:ID", DatosFacturaControler.IndexGet)
+	app.Post("/DatosFactura/alta/:ID", DatosFacturaControler.IndexPost)
 	//                        ...
 
 	//###################### Listen Server #############################

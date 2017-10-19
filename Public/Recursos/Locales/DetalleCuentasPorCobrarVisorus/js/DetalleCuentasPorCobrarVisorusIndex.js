@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('#textoabuscar').keydown(function(e) {
         if (e.which == 13 || e.keyCode == 13) {
             e.preventDefault();
-            GetEspecificToIndex('CuentasPorCobrar');
+            GetEspecificToIndex('DetalleCuentasPorCobrarVisorus');
         }
     });
 });
@@ -47,45 +47,37 @@ function GetEspecificToIndex(NModelo) {
     }
 }
 
-function GetAllToIndex(NModelo) {
-    alertify.confirm("Mostrar Todos los Registros de CuentasPorCobrar.","Esta Operación puede tardar bastante. ¿Desea Continuar?",
-    function(){
-      var url = '/' + NModelo + '/CargaIndex'
-      $('#Loading').show();
-      $.ajax({
-          url: url,
-          type: 'POST',
-          dataType: 'json',
-          data: {},
-          success: function(data) {
- 
-              if (data != null) {
-                  if (data.SEstado) {
-                      function Modelo() {
-                          data.SModeloDeColumnas[3].searchoptions["FECHA"] = datePick;
-                          data.SModeloDeColumnas[13].searchoptions["HORA"] = datePick;
-                          //data.SModeloDeColumnas[5].formatter = formatSelect;
-                          return data.SModeloDeColumnas;
-                      }
-                      GeneraGrid(data.STituloTabla, data.SRenglones.rows, data.SNombresDeColumnas, Modelo, MetodoSelectRow, 'id');
-                  } else {
-                      alertify.error(data.SMsj);
-                  }
-              } else {
-                  alertify.error("Hubo un problema al recibir información del servidor, favor de volver a intentar más tarde.");
-              }
-              $('#Loading').hide();
-          },
-          error: function(data) {
-              $('#Loading').hide();
-          },
-      });
-    },
-    function(){
+function GetAllToIndex(NModelo,val) {
+    var url = '/' + NModelo + '/CargaIndex/'+val
+    $('#Loading').show();
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: {},
+        success: function(data) {
+
+            if (data != null) {
+                if (data.SEstado) {
+                    function Modelo() {
+                        data.SModeloDeColumnas[3].searchoptions["FECHA"] = datePick;
+                        data.SModeloDeColumnas[13].searchoptions["HORA"] = datePick;
+                        //data.SModeloDeColumnas[5].formatter = formatSelect;
+                        return data.SModeloDeColumnas;
+                    }
+                    GeneraGrid(data.STituloTabla, data.SRenglones.rows, data.SNombresDeColumnas, Modelo, MetodoSelectRow, 'id');
+                } else {
+                    alertify.error(data.SMsj);
+                }
+            } else {
+                alertify.error("Hubo un problema al recibir información del servidor, favor de volver a intentar más tarde.");
+            }
+            $('#Loading').hide();
+        },
+        error: function(data) {
+            $('#Loading').hide();
+        },
     });
-
-
-
 }
 
 
@@ -209,9 +201,11 @@ function GeneraGrid(EncabezadoDeGrid, CadenaURLDeMetodoParaObtenerDatos, Listado
  
 }
 
+
 function MetodoSelectRow(id) {
     itemSeleccionado = $("#list").jqGrid('getGridParam', 'selrow');
     var query = ""
-    query += $("#list").jqGrid('getCell', itemSeleccionado, 'NUMCFD');
-    window.location = '/DatosFactura/alta/'+query;//window.location = '/CuentasPorCobrar/edita' + "/" + query;
+
+    query += $("#list").jqGrid('getCell', itemSeleccionado, 'Folio');
+    window.location = '/DetalleCuentasPorCobrarVisorus/alta'; //'/CuentasPorCobrar/edita' + "/" + query;  
 }

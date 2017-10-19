@@ -1,4 +1,4 @@
-package CuentasPorCobrarControler
+package DetalleCuentasPorCobrarVisorusControler
 
 import (
 	"encoding/json"
@@ -11,7 +11,9 @@ import (
 	"../../Modulos/Session"
 	"github.com/tealeg/xlsx"
 
-	"../../Modelos/CuentasPorCobrarModel"
+	"../../Modelos/DetalleCuentasPorCobrarVisorusModel"
+	//"../../Modulos/CargaCombos"
+	//"../../Modulos/Conexiones"
 	"../../Modulos/General"
 	"gopkg.in/kataras/iris.v6"
 	"gopkg.in/mgo.v2/bson"
@@ -35,109 +37,26 @@ var arrIDMgo []bson.ObjectId
 var arrIDElastic []bson.ObjectId
 var arrToMongo []bson.ObjectId
 
-//####################< GETCUENTASPORCOBRAR (BUSQUEDA) >###########################
-
-/*func GetCuentaPorCobrarSerFolio(ctx *iris.Context) {
-
-	var Doc MoEstructuras.DocAsk
-	Doc.Header.From = "Facturacion"
-	Doc.Header.Process = "Get MAEMOVCFD For Serie Folio"
-	Doc.Header.Date = time.Now()
-
-	var SerFolio map[string]interface{}
-	SerFolio = make(map[string]interface{})
-
-	SerFolio["SERIE"] = "AXR"
-	SerFolio["FOLIO"] = "42"
-
-	Doc.Body.Content = SerFolio
-
-	//Data, _ := json.Marshal(Doc)
-
-	toSend, err := Crypto.CodificaSend(Doc)
-
-	//Data, _ := json.Marshal(toSend)
-
-	Send := url.Values{}
-	Send.Add("X1X2X3", string(toSend.X1X2X3))
-	Send.Add("Y1Y2Y3", string(toSend.Y1Y2Y3))
-
-	SendMe, err := WebService.ConsultaWSPost("http://192.168.1.89:8084/ApiWsVisorus/CuentasXCobrar", Send, time.Duration(60))
-
-	if err != nil {
-		fmt.Println("\n No pude Codificar variables para enviar", err)
-	}
-
-	//Data, _ := json.Marshal(SendMe)
-
-	if err != nil {
-		fmt.Println("\n Ocurrió un problema al leer info de la respuesta del servidor: " + err.Error())
-	}
-
-	DocBytes, err := Crypto.DecodificaSend(SendMe)
-	if err != nil {
-		fmt.Println("\nOcurrió un problema al decodificar mensaje Send: " + err.Error())
-	}
-
-	var Document MoEstructuras.DocAnswer
-	err = json.Unmarshal(DocBytes, &Document)
-	if err != nil {
-		fmt.Println("\n Ocurrió un problema al decodificar el contenido de la respuesta desencriptada \n")
-	}
-
-	err = ctx.JSON(iris.StatusOK, Document)
-
-	if err != nil {
-		fmt.Println("\n Ocurrió un problema al decodificar json a vista \n")
-	}
-
-	ctx.Write([]byte("\n Consumido: \n"))
-
-}*/
-
 //####################< INDEX (BUSQUEDA) >###########################
 
-//IndexGet renderea al index de CuentasPorCobrar
+//IndexGet renderea al index de DetalleCuentasPorCobrarVisorus
 func IndexGet(ctx *iris.Context) {
 
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
-	/*var Cabecera, Cuerpo string
-	numeroRegistros = CuentasPorCobrarModel.CountAll()
-	paginasTotales = MoGeneral.Totalpaginas(numeroRegistros, limitePorPagina)
-	CuentasPorCobrars := CuentasPorCobrarModel.GetAll()
-
-	arrIDMgo = []bson.ObjectId{}
-	for _, v := range CuentasPorCobrars {
-		arrIDMgo = append(arrIDMgo, v.ID)
-	}
-	arrIDElastic = arrIDMgo
-
-	if numeroRegistros <= limitePorPagina {
-		Cabecera, Cuerpo = CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrars[0:numeroRegistros])
-	} else if numeroRegistros >= limitePorPagina {
-		Cabecera, Cuerpo = CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrars[0:limitePorPagina])
-	}
-
-	Send.SIndex.SCabecera = template.HTML(Cabecera)
-	Send.SIndex.SBody = template.HTML(Cuerpo)
-	Send.SIndex.SGrupo = template.HTML(CargaCombos.CargaComboMostrarEnIndex(limitePorPagina))
-	Paginacion := MoGeneral.ConstruirPaginacion(paginasTotales, 1)
-	Send.SIndex.SPaginacion = template.HTML(Paginacion)
-	Send.SIndex.SResultados = true
-	*/
-	ctx.Render("CuentasPorCobrarIndex.html", Send)
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
+	ctx.Render("DetalleCuentasPorCobrarVisorusIndex.html", Send)
 
 }
 
 //CargaIndex regresa los datos necesarios para cargar el Index de cada modelo
 func CargaIndex(ctx *iris.Context) {
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	id := ctx.Param("ID")
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 
 	Send.SIndex.STituloTabla = "SE CARGARON TODAS LAS UNIDADES"
-	Modelo := CuentasPorCobrarModel.MapaModelo()
+	Modelo := DetalleCuentasPorCobrarVisorusModel.MapaModelo()
 	Send.SIndex.SNombresDeColumnas = Modelo["name"].([]string)
 	Send.SIndex.SModeloDeColumnas = MoGeneral.GeneraModeloColumnas(Modelo)
-	Send.SIndex.SRenglones = CuentasPorCobrarModel.GeneraDataRowDeIndex(CuentasPorCobrarModel.GetAll())
+	Send.SIndex.SRenglones = DetalleCuentasPorCobrarVisorusModel.GeneraDataRowDeIndex(DetalleCuentasPorCobrarVisorusModel.GetOne(id))
 	Send.SEstado = true
 	jData, err := json.Marshal(Send)
 	if err != nil {
@@ -150,7 +69,7 @@ func CargaIndex(ctx *iris.Context) {
 
 //CargaIndexEspecifico regresa los datos necesarios para cargar el Index de cada modelo
 func CargaIndexEspecifico(ctx *iris.Context) {
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 	var TextoABuscar string
 	TextoABuscar = ctx.FormValue("Texto")
 	fmt.Println("esto es lo que tiene Texto a Buscar: ", TextoABuscar)
@@ -158,13 +77,13 @@ func CargaIndexEspecifico(ctx *iris.Context) {
 	if TextoABuscar != "" {
 
 		Send.SIndex.STituloTabla = "SE CARGARON LAS UNIDADES FILTRADAS POR: " + TextoABuscar
-		Modelo := CuentasPorCobrarModel.MapaModelo()
+		Modelo := DetalleCuentasPorCobrarVisorusModel.MapaModelo()
 		Send.SIndex.SNombresDeColumnas = Modelo["name"].([]string)
 		Send.SIndex.SModeloDeColumnas = MoGeneral.GeneraModeloColumnas(Modelo)
 
 		//Consultamos en Elastic y obtenemos los datos para mostrar en la nueva colección
 
-		docs := CuentasPorCobrarModel.BuscarEnElastic(TextoABuscar)
+		docs := DetalleCuentasPorCobrarVisorusModel.BuscarEnElastic(TextoABuscar)
 
 		if docs.Hits.TotalHits > 0 {
 
@@ -190,7 +109,7 @@ func CargaIndexEspecifico(ctx *iris.Context) {
 		}
 
 		fmt.Println("Se encontraron ", len(arrIDElastic), " registros.")
-		Send.SIndex.SRenglones = CuentasPorCobrarModel.GeneraDataRowDeIndex(CuentasPorCobrarModel.GetEspecifics(arrIDElastic))
+		Send.SIndex.SRenglones = DetalleCuentasPorCobrarVisorusModel.GeneraDataRowDeIndex(DetalleCuentasPorCobrarVisorusModel.GetEspecifics(arrIDElastic))
 		fmt.Println(Send.SIndex.SRenglones)
 		Send.SEstado = true
 		jData, err := json.Marshal(Send)
@@ -215,103 +134,9 @@ func CargaIndexEspecifico(ctx *iris.Context) {
 
 }
 
-/*
-//IndexPost regresa la peticon post que se hizo desde el index de CuentasPorCobrar
-func IndexPost(ctx *iris.Context) {
-
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
-
-	NameUsrLoged, MenuPrincipal, MenuUsr, errSes := Session.GetDataSession(ctx) //Retorna los datos de la session
-	Send.SSesion.Name = NameUsrLoged
-	Send.SSesion.MenuPrincipal = template.HTML(MenuPrincipal)
-	Send.SSesion.MenuUsr = template.HTML(MenuUsr)
-	if errSes != nil {
-		Send.SEstado = false
-		Send.SMsj = errSes.Error()
-		ctx.Render("ZError.html", Send)
-		return
-	}
-
-	var Cabecera, Cuerpo string
-
-	grupo := ctx.FormValue("Grupox")
-	if grupo != "" {
-		gru, _ := strconv.Atoi(grupo)
-		limitePorPagina = gru
-	}
-
-	cadenaBusqueda = ctx.FormValue("searchbox")
-	//Send.CuentasPorCobrar.EVARIABLECuentasPorCobrar.VARIABLE = cadenaBusqueda    //Variable a autilizar para regresar la cadena de búsqueda.
-
-	if cadenaBusqueda != "" {
-
-		docs := CuentasPorCobrarModel.BuscarEnElastic(cadenaBusqueda)
-
-		if docs.Hits.TotalHits > 0 {
-			arrIDElastic = []bson.ObjectId{}
-
-			for _, item := range docs.Hits.Hits {
-				IDElastic = bson.ObjectIdHex(item.Id)
-				arrIDElastic = append(arrIDElastic, IDElastic)
-			}
-
-			numeroRegistros = len(arrIDElastic)
-
-			arrToMongo = []bson.ObjectId{}
-			if numeroRegistros <= limitePorPagina {
-				for _, v := range arrIDElastic[0:numeroRegistros] {
-					arrToMongo = append(arrToMongo, v)
-				}
-			} else if numeroRegistros >= limitePorPagina {
-				for _, v := range arrIDElastic[0:limitePorPagina] {
-					arrToMongo = append(arrToMongo, v)
-				}
-			}
-
-			MoConexion.FlushElastic()
-
-			Cabecera, Cuerpo := CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrarModel.GetEspecifics(arrToMongo))
-			Send.SIndex.SCabecera = template.HTML(Cabecera)
-			Send.SIndex.SBody = template.HTML(Cuerpo)
-
-			paginasTotales = MoGeneral.Totalpaginas(numeroRegistros, limitePorPagina)
-			Paginacion := MoGeneral.ConstruirPaginacion(paginasTotales, 1)
-			Send.SIndex.SPaginacion = template.HTML(Paginacion)
-
-		} else {
-			if numeroRegistros <= limitePorPagina {
-				Cabecera, Cuerpo = CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrarModel.GetEspecifics(arrIDMgo[0:numeroRegistros]))
-			} else if numeroRegistros >= limitePorPagina {
-				Cabecera, Cuerpo = CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrarModel.GetEspecifics(arrIDMgo[0:limitePorPagina]))
-			}
-
-			Send.SIndex.SCabecera = template.HTML(Cabecera)
-			Send.SIndex.SBody = template.HTML(Cuerpo)
-
-			paginasTotales = MoGeneral.Totalpaginas(numeroRegistros, limitePorPagina)
-			Paginacion := MoGeneral.ConstruirPaginacion(paginasTotales, 1)
-			Send.SIndex.SPaginacion = template.HTML(Paginacion)
-
-			Send.SIndex.SRMsj = "No se encontraron resultados para: " + cadenaBusqueda + " ."
-		}
-
-		Send.SEstado = true
-
-	} else {
-		Send.SEstado = false
-		Send.SMsj = "No se recibió una cadena de consulta, favor de escribirla."
-		Send.SResultados = false
-	}
-	Send.SIndex.SGrupo = template.HTML(CargaCombos.CargaComboMostrarEnIndex(limitePorPagina))
-	ctx.Render("CuentasPorCobrarIndex.html", Send)
-
-} */
-
-//###########################< ALTA >################################
-
 func UploadFileGet(ctx *iris.Context) {
 
-	ctx.Render("CuentasPorCobrarUploadFile.html", nil)
+	ctx.Render("DetalleCuentasPorCobrarVisorusUploadFile.html", nil)
 }
 
 func UploadFilePost(ctx *iris.Context) {
@@ -347,7 +172,7 @@ func UploadFilePost(ctx *iris.Context) {
 		fmt.Println(err)
 	}
 
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 	var NombresSheets []string
 
 	for _, sheet := range xlFile.Sheets {
@@ -356,13 +181,15 @@ func UploadFilePost(ctx *iris.Context) {
 	}
 
 	//fmt.Println("FILE: ", err, nombrefile)
-	ctx.Render("CuentasPorCobrarSelectSheet.html", Send)
+	ctx.Render("DetalleCuentasPorCobrarVisorusSelectSheet.html", Send)
 }
 
-//AltaGet renderea al alta de CuentasPorCobrar
+//###########################< ALTA >################################
+
+//AltaGet renderea al alta de DetalleCuentasPorCobrarVisorus
 func AltaGet(ctx *iris.Context) {
 
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 
 	NameUsrLoged, MenuPrincipal, MenuUsr, errSes := Session.GetDataSession(ctx) //Retorna los datos de la session
 	Send.SSesion.Name = NameUsrLoged
@@ -377,14 +204,14 @@ func AltaGet(ctx *iris.Context) {
 
 	//####   TÚ CÓDIGO PARA CARGAR DATOS A LA VISTA DE ALTA----> PROGRAMADOR
 
-	ctx.Render("CuentasPorCobrarAlta.html", Send)
+	ctx.Render("DetalleCuentasPorCobrarVisorusAlta.html", Send)
 
 }
 
-//AltaPost regresa la petición post que se hizo desde el alta de CuentasPorCobrar
+//AltaPost regresa la petición post que se hizo desde el alta de DetalleCuentasPorCobrarVisorus
 func AltaPost(ctx *iris.Context) {
 
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 
 	NameUsrLoged, MenuPrincipal, MenuUsr, errSes := Session.GetDataSession(ctx) //Retorna los datos de la session
 	Send.SSesion.Name = NameUsrLoged
@@ -399,16 +226,16 @@ func AltaPost(ctx *iris.Context) {
 
 	//####   TÚ CÓDIGO PARA PROCESAR DATOS DE LA VISTA DE ALTA Y GUARDARLOS O REGRESARLOS----> PROGRAMADOR
 
-	ctx.Render("CuentasPorCobrarAlta.html", Send)
+	ctx.Render("DetalleCuentasPorCobrarVisorusAlta.html", Send)
 
 }
 
 //###########################< EDICION >###############################
 
-//EditaGet renderea a la edición de CuentasPorCobrar
+//EditaGet renderea a la edición de DetalleCuentasPorCobrarVisorus
 func EditaGet(ctx *iris.Context) {
 
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 
 	NameUsrLoged, MenuPrincipal, MenuUsr, errSes := Session.GetDataSession(ctx) //Retorna los datos de la session
 	Send.SSesion.Name = NameUsrLoged
@@ -421,14 +248,14 @@ func EditaGet(ctx *iris.Context) {
 		return
 	}
 
-	ctx.Render("CuentasPorCobrarEdita.html", Send)
+	ctx.Render("DetalleCuentasPorCobrarVisorusEdita.html", Send)
 
 }
 
-//EditaPost regresa el resultado de la petición post generada desde la edición de CuentasPorCobrar
+//EditaPost regresa el resultado de la petición post generada desde la edición de DetalleCuentasPorCobrarVisorus
 func EditaPost(ctx *iris.Context) {
 
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 
 	NameUsrLoged, MenuPrincipal, MenuUsr, errSes := Session.GetDataSession(ctx) //Retorna los datos de la session
 	Send.SSesion.Name = NameUsrLoged
@@ -443,7 +270,7 @@ func EditaPost(ctx *iris.Context) {
 
 	//####   TÚ CÓDIGO PARA PROCESAR DATOS DE LA VISTA DE ALTA Y GUARDARLOS O REGRESARLOS----> PROGRAMADOR
 
-	ctx.Render("CuentasPorCobrarEdita.html", Send)
+	ctx.Render("DetalleCuentasPorCobrarVisorusEdita.html", Send)
 
 }
 
@@ -451,7 +278,7 @@ func EditaPost(ctx *iris.Context) {
 
 //DetalleGet renderea al index.html
 func DetalleGet(ctx *iris.Context) {
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 
 	NameUsrLoged, MenuPrincipal, MenuUsr, errSes := Session.GetDataSession(ctx) //Retorna los datos de la session
 	Send.SSesion.Name = NameUsrLoged
@@ -466,12 +293,12 @@ func DetalleGet(ctx *iris.Context) {
 
 	//###### TU CÓDIGO AQUÍ PROGRAMADOR
 
-	ctx.Render("CuentasPorCobrarDetalle.html", Send)
+	ctx.Render("DetalleCuentasPorCobrarVisorusDetalle.html", Send)
 }
 
 //DetallePost renderea al index.html
 func DetallePost(ctx *iris.Context) {
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 
 	NameUsrLoged, MenuPrincipal, MenuUsr, errSes := Session.GetDataSession(ctx) //Retorna los datos de la session
 	Send.SSesion.Name = NameUsrLoged
@@ -486,14 +313,15 @@ func DetallePost(ctx *iris.Context) {
 
 	//###### TU CÓDIGO AQUÍ PROGRAMADOR
 
-	ctx.Render("CuentasPorCobrarDetalle.html", Send)
+	ctx.Render("DetalleCuentasPorCobrarVisorusDetalle.html", Send)
 }
 
-//####################< RUTINAS ADICIONALES >##########################
 /*
+//####################< RUTINAS ADICIONALES >##########################
+
 //BuscaPagina regresa la tabla de busqueda y su paginacion en el momento de especificar página
 func BuscaPagina(ctx *iris.Context) {
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 
 	Pagina := ctx.FormValue("Pag")
 	if Pagina != "" {
@@ -524,7 +352,7 @@ func BuscaPagina(ctx *iris.Context) {
 			}
 		}
 
-		Cabecera, Cuerpo := CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrarModel.GetEspecifics(arrToMongo))
+		Cabecera, Cuerpo := DetalleCuentasPorCobrarVisorusModel.GeneraTemplatesBusqueda(DetalleCuentasPorCobrarVisorusModel.GetEspecifics(arrToMongo))
 		Send.SIndex.SCabecera = template.HTML(Cabecera)
 		Send.SIndex.SBody = template.HTML(Cuerpo)
 
@@ -547,7 +375,7 @@ func BuscaPagina(ctx *iris.Context) {
 
 //MuestraIndexPorGrupo regresa template de busqueda y paginacion de acuerdo a la agrupacion solicitada
 func MuestraIndexPorGrupo(ctx *iris.Context) {
-	var Send CuentasPorCobrarModel.SCuentasPorCobrar
+	var Send DetalleCuentasPorCobrarVisorusModel.SDetalleCuentasPorCobrarVisorus
 	var Cabecera, Cuerpo string
 
 	grupo := ctx.FormValue("Grupox")
@@ -557,11 +385,11 @@ func MuestraIndexPorGrupo(ctx *iris.Context) {
 	}
 
 	cadenaBusqueda = ctx.FormValue("searchbox")
-	//Send.CuentasPorCobrar.ENombreCuentasPorCobrar.Nombre = cadenaBusqueda
+	//Send.DetalleCuentasPorCobrarVisorus.ENombreDetalleCuentasPorCobrarVisorus.Nombre = cadenaBusqueda
 
 	if cadenaBusqueda != "" {
 
-		docs := CuentasPorCobrarModel.BuscarEnElastic(cadenaBusqueda)
+		docs := DetalleCuentasPorCobrarVisorusModel.BuscarEnElastic(cadenaBusqueda)
 
 		if docs.Hits.TotalHits > 0 {
 			arrIDElastic = []bson.ObjectId{}
@@ -584,7 +412,7 @@ func MuestraIndexPorGrupo(ctx *iris.Context) {
 				}
 			}
 
-			Cabecera, Cuerpo = CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrarModel.GetEspecifics(arrToMongo))
+			Cabecera, Cuerpo = DetalleCuentasPorCobrarVisorusModel.GeneraTemplatesBusqueda(DetalleCuentasPorCobrarVisorusModel.GetEspecifics(arrToMongo))
 			Send.SIndex.SCabecera = template.HTML(Cabecera)
 			Send.SIndex.SBody = template.HTML(Cuerpo)
 			MoConexion.FlushElastic()
@@ -596,9 +424,9 @@ func MuestraIndexPorGrupo(ctx *iris.Context) {
 		} else {
 
 			if numeroRegistros <= limitePorPagina {
-				Cabecera, Cuerpo = CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrarModel.GetEspecifics(arrIDMgo[0:numeroRegistros]))
+				Cabecera, Cuerpo = DetalleCuentasPorCobrarVisorusModel.GeneraTemplatesBusqueda(DetalleCuentasPorCobrarVisorusModel.GetEspecifics(arrIDMgo[0:numeroRegistros]))
 			} else if numeroRegistros >= limitePorPagina {
-				Cabecera, Cuerpo = CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrarModel.GetEspecifics(arrIDMgo[0:limitePorPagina]))
+				Cabecera, Cuerpo = DetalleCuentasPorCobrarVisorusModel.GeneraTemplatesBusqueda(DetalleCuentasPorCobrarVisorusModel.GetEspecifics(arrIDMgo[0:limitePorPagina]))
 			}
 
 			Send.SIndex.SCabecera = template.HTML(Cabecera)
@@ -614,9 +442,9 @@ func MuestraIndexPorGrupo(ctx *iris.Context) {
 	} else {
 
 		if numeroRegistros <= limitePorPagina {
-			Cabecera, Cuerpo = CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrarModel.GetEspecifics(arrIDMgo[0:numeroRegistros]))
+			Cabecera, Cuerpo = DetalleCuentasPorCobrarVisorusModel.GeneraTemplatesBusqueda(DetalleCuentasPorCobrarVisorusModel.GetEspecifics(arrIDMgo[0:numeroRegistros]))
 		} else if numeroRegistros >= limitePorPagina {
-			Cabecera, Cuerpo = CuentasPorCobrarModel.GeneraTemplatesBusqueda(CuentasPorCobrarModel.GetEspecifics(arrIDMgo[0:limitePorPagina]))
+			Cabecera, Cuerpo = DetalleCuentasPorCobrarVisorusModel.GeneraTemplatesBusqueda(DetalleCuentasPorCobrarVisorusModel.GetEspecifics(arrIDMgo[0:limitePorPagina]))
 		}
 
 		Send.SIndex.SCabecera = template.HTML(Cabecera)

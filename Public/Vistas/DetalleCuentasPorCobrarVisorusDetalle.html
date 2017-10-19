@@ -1,0 +1,771 @@
+
+<!-- ############################## <  VISTA DETALLE  > #####################################-->
+<!-- ############################## <  DetalleCuentasPorCobrarVisorusDetalle.html  > #####################################-->
+<!-- ############################## <  VISTA GENERAL > #####################################-->
+
+
+<!-- INICIO PAGINA -->
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- INICIO CABECERA ################################################################################-->
+<head>
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content ="IE=edge">
+        <title></title>
+		<link rel="icon" type="image/png" href="../img/k.ico" />
+<!--#################### ESTILOS GENERALES #########################-->
+		{{template "styles_layout"}}
+<!--#################### TUS ESTILOS ###############################-->
+
+<!--#################### SCRIPTS GENERALES #########################-->
+		{{template "scripts_layout"}}
+<!--#################### TUS SCRIPTS #########################-->
+    	<script src="../../Locales/DetalleCuentasPorCobrarVisorus/js/DetalleCuentasPorCobrarVisorus.js"></script>
+<!--#################### CABECERA #########################-->
+        {{template "header_layout" .SSesion }}
+</head>
+<!-- FINAL CABECERA ###################################################################################-->
+
+<!-- INICIO BODY -->
+<body>
+
+ {{template "menu_layout" }}
+
+	<div class="col-md-10"  style="padding-bottom: 5%;" id="SeccionCuerpo">
+		{{if .SEstado}}
+			{{if .SMsj}}
+				<div class="alert alert-success alert-dismissible text-center" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<strong><h3>{{.SMsj}}</h3></strong>
+				</div>
+			{{end}}
+
+		{{else}}
+
+			{{if .SMsj}}
+				<div class="alert alert-danger alert-dismissible text-center" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<strong><h3>{{.SMsj}}</h3></strong>
+				</div>
+			{{end}}
+		{{end}}
+
+			<h1>Detalle de DetalleCuentasPorCobrarVisoruss</h1>
+			<form id="Form_Detalle_DetalleCuentasPorCobrarVisorus" class="form-horizontal" method="POST">
+
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NUMCFD ">NUMCFD :</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENUMCFD DetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NUMCFD " id="NUMCFD " class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMCFD DetalleCuentasPorCobrarVisorus.NUMCFD }}" aria-required="true" aria-describedby="NUMCFD -error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NUMCFD -error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENUMCFD DetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NUMCFD " id="NUMCFD " class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMCFD DetalleCuentasPorCobrarVisorus.NUMCFD }}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="SERIE ">SERIE :</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ESERIE DetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="SERIE " id="SERIE " class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ESERIE DetalleCuentasPorCobrarVisorus.SERIE }}" aria-required="true" aria-describedby="SERIE -error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="SERIE -error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ESERIE DetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="SERIE " id="SERIE " class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ESERIE DetalleCuentasPorCobrarVisorus.SERIE }}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="FOLIO">FOLIO:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EFOLIODetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="FOLIO" id="FOLIO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EFOLIODetalleCuentasPorCobrarVisorus.FOLIO}}" aria-required="true" aria-describedby="FOLIO-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="FOLIO-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EFOLIODetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="FOLIO" id="FOLIO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EFOLIODetalleCuentasPorCobrarVisorus.FOLIO}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="FECHA">FECHA:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EFECHADetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="FECHA" id="FECHA" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EFECHADetalleCuentasPorCobrarVisorus.FECHA}}" aria-required="true" aria-describedby="FECHA-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="FECHA-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EFECHADetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="FECHA" id="FECHA" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EFECHADetalleCuentasPorCobrarVisorus.FECHA}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NUMCTE">NUMCTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENUMCTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NUMCTE" id="NUMCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMCTEDetalleCuentasPorCobrarVisorus.NUMCTE}}" aria-required="true" aria-describedby="NUMCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NUMCTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENUMCTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NUMCTE" id="NUMCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMCTEDetalleCuentasPorCobrarVisorus.NUMCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="RFC">RFC:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ERFCDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="RFC" id="RFC" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ERFCDetalleCuentasPorCobrarVisorus.RFC}}" aria-required="true" aria-describedby="RFC-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="RFC-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ERFCDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="RFC" id="RFC" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ERFCDetalleCuentasPorCobrarVisorus.RFC}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="SUBTOTAL">SUBTOTAL:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ESUBTOTALDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="SUBTOTAL" id="SUBTOTAL" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ESUBTOTALDetalleCuentasPorCobrarVisorus.SUBTOTAL}}" aria-required="true" aria-describedby="SUBTOTAL-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="SUBTOTAL-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ESUBTOTALDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="SUBTOTAL" id="SUBTOTAL" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ESUBTOTALDetalleCuentasPorCobrarVisorus.SUBTOTAL}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="DESCUENTO">DESCUENTO:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EDESCUENTODetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="DESCUENTO" id="DESCUENTO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EDESCUENTODetalleCuentasPorCobrarVisorus.DESCUENTO}}" aria-required="true" aria-describedby="DESCUENTO-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="DESCUENTO-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EDESCUENTODetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="DESCUENTO" id="DESCUENTO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EDESCUENTODetalleCuentasPorCobrarVisorus.DESCUENTO}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="IMPUESTO">IMPUESTO:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EIMPUESTODetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="IMPUESTO" id="IMPUESTO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EIMPUESTODetalleCuentasPorCobrarVisorus.IMPUESTO}}" aria-required="true" aria-describedby="IMPUESTO-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="IMPUESTO-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EIMPUESTODetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="IMPUESTO" id="IMPUESTO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EIMPUESTODetalleCuentasPorCobrarVisorus.IMPUESTO}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="IEPS">IEPS:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EIEPSDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="IEPS" id="IEPS" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EIEPSDetalleCuentasPorCobrarVisorus.IEPS}}" aria-required="true" aria-describedby="IEPS-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="IEPS-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EIEPSDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="IEPS" id="IEPS" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EIEPSDetalleCuentasPorCobrarVisorus.IEPS}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="TIPO_COMP">TIPO_COMP:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ETIPO_COMPDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="TIPO_COMP" id="TIPO_COMP" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ETIPO_COMPDetalleCuentasPorCobrarVisorus.TIPO_COMP}}" aria-required="true" aria-describedby="TIPO_COMP-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="TIPO_COMP-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ETIPO_COMPDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="TIPO_COMP" id="TIPO_COMP" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ETIPO_COMPDetalleCuentasPorCobrarVisorus.TIPO_COMP}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="STATUS">STATUS:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ESTATUSDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="STATUS" id="STATUS" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ESTATUSDetalleCuentasPorCobrarVisorus.STATUS}}" aria-required="true" aria-describedby="STATUS-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="STATUS-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ESTATUSDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="STATUS" id="STATUS" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ESTATUSDetalleCuentasPorCobrarVisorus.STATUS}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="FORPAG">FORPAG:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EFORPAGDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="FORPAG" id="FORPAG" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EFORPAGDetalleCuentasPorCobrarVisorus.FORPAG}}" aria-required="true" aria-describedby="FORPAG-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="FORPAG-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EFORPAGDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="FORPAG" id="FORPAG" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EFORPAGDetalleCuentasPorCobrarVisorus.FORPAG}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="HORA">HORA:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EHORADetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="HORA" id="HORA" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EHORADetalleCuentasPorCobrarVisorus.HORA}}" aria-required="true" aria-describedby="HORA-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="HORA-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EHORADetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="HORA" id="HORA" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EHORADetalleCuentasPorCobrarVisorus.HORA}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NUMALM">NUMALM:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENUMALMDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NUMALM" id="NUMALM" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMALMDetalleCuentasPorCobrarVisorus.NUMALM}}" aria-required="true" aria-describedby="NUMALM-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NUMALM-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENUMALMDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NUMALM" id="NUMALM" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMALMDetalleCuentasPorCobrarVisorus.NUMALM}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="STATUS2">STATUS2:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ESTATUS2DetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="STATUS2" id="STATUS2" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ESTATUS2DetalleCuentasPorCobrarVisorus.STATUS2}}" aria-required="true" aria-describedby="STATUS2-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="STATUS2-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ESTATUS2DetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="STATUS2" id="STATUS2" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ESTATUS2DetalleCuentasPorCobrarVisorus.STATUS2}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="TYPECFD">TYPECFD:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ETYPECFDDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="TYPECFD" id="TYPECFD" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ETYPECFDDetalleCuentasPorCobrarVisorus.TYPECFD}}" aria-required="true" aria-describedby="TYPECFD-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="TYPECFD-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ETYPECFDDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="TYPECFD" id="TYPECFD" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ETYPECFDDetalleCuentasPorCobrarVisorus.TYPECFD}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NOMCTE">NOMCTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENOMCTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NOMCTE" id="NOMCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENOMCTEDetalleCuentasPorCobrarVisorus.NOMCTE}}" aria-required="true" aria-describedby="NOMCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NOMCTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENOMCTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NOMCTE" id="NOMCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENOMCTEDetalleCuentasPorCobrarVisorus.NOMCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="DIRCTE">DIRCTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EDIRCTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="DIRCTE" id="DIRCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EDIRCTEDetalleCuentasPorCobrarVisorus.DIRCTE}}" aria-required="true" aria-describedby="DIRCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="DIRCTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EDIRCTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="DIRCTE" id="DIRCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EDIRCTEDetalleCuentasPorCobrarVisorus.DIRCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NLICTE">NLICTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENLICTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NLICTE" id="NLICTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENLICTEDetalleCuentasPorCobrarVisorus.NLICTE}}" aria-required="true" aria-describedby="NLICTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NLICTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENLICTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NLICTE" id="NLICTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENLICTEDetalleCuentasPorCobrarVisorus.NLICTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NLECTE">NLECTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENLECTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NLECTE" id="NLECTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENLECTEDetalleCuentasPorCobrarVisorus.NLECTE}}" aria-required="true" aria-describedby="NLECTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NLECTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENLECTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NLECTE" id="NLECTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENLECTEDetalleCuentasPorCobrarVisorus.NLECTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="COLCTE">COLCTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ECOLCTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="COLCTE" id="COLCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECOLCTEDetalleCuentasPorCobrarVisorus.COLCTE}}" aria-required="true" aria-describedby="COLCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="COLCTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ECOLCTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="COLCTE" id="COLCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECOLCTEDetalleCuentasPorCobrarVisorus.COLCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="POBCTE">POBCTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EPOBCTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="POBCTE" id="POBCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EPOBCTEDetalleCuentasPorCobrarVisorus.POBCTE}}" aria-required="true" aria-describedby="POBCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="POBCTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EPOBCTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="POBCTE" id="POBCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EPOBCTEDetalleCuentasPorCobrarVisorus.POBCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="EDOCTE">EDOCTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EEDOCTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="EDOCTE" id="EDOCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EEDOCTEDetalleCuentasPorCobrarVisorus.EDOCTE}}" aria-required="true" aria-describedby="EDOCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="EDOCTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EEDOCTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="EDOCTE" id="EDOCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EEDOCTEDetalleCuentasPorCobrarVisorus.EDOCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="PAISCTE">PAISCTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EPAISCTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="PAISCTE" id="PAISCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EPAISCTEDetalleCuentasPorCobrarVisorus.PAISCTE}}" aria-required="true" aria-describedby="PAISCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="PAISCTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EPAISCTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="PAISCTE" id="PAISCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EPAISCTEDetalleCuentasPorCobrarVisorus.PAISCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="CPCTE">CPCTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ECPCTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="CPCTE" id="CPCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECPCTEDetalleCuentasPorCobrarVisorus.CPCTE}}" aria-required="true" aria-describedby="CPCTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="CPCTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ECPCTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="CPCTE" id="CPCTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECPCTEDetalleCuentasPorCobrarVisorus.CPCTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NUMMON">NUMMON:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENUMMONDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NUMMON" id="NUMMON" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMMONDetalleCuentasPorCobrarVisorus.NUMMON}}" aria-required="true" aria-describedby="NUMMON-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NUMMON-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENUMMONDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NUMMON" id="NUMMON" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMMONDetalleCuentasPorCobrarVisorus.NUMMON}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="FORPAG2">FORPAG2:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EFORPAG2DetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="FORPAG2" id="FORPAG2" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EFORPAG2DetalleCuentasPorCobrarVisorus.FORPAG2}}" aria-required="true" aria-describedby="FORPAG2-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="FORPAG2-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EFORPAG2DetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="FORPAG2" id="FORPAG2" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EFORPAG2DetalleCuentasPorCobrarVisorus.FORPAG2}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NUMEYS">NUMEYS:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENUMEYSDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NUMEYS" id="NUMEYS" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMEYSDetalleCuentasPorCobrarVisorus.NUMEYS}}" aria-required="true" aria-describedby="NUMEYS-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NUMEYS-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENUMEYSDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NUMEYS" id="NUMEYS" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMEYSDetalleCuentasPorCobrarVisorus.NUMEYS}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="STSCON">STSCON:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ESTSCONDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="STSCON" id="STSCON" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ESTSCONDetalleCuentasPorCobrarVisorus.STSCON}}" aria-required="true" aria-describedby="STSCON-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="STSCON-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ESTSCONDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="STSCON" id="STSCON" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ESTSCONDetalleCuentasPorCobrarVisorus.STSCON}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NUMCFD_1">NUMCFD_1:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENUMCFD_1DetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NUMCFD_1" id="NUMCFD_1" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMCFD_1DetalleCuentasPorCobrarVisorus.NUMCFD_1}}" aria-required="true" aria-describedby="NUMCFD_1-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NUMCFD_1-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENUMCFD_1DetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NUMCFD_1" id="NUMCFD_1" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMCFD_1DetalleCuentasPorCobrarVisorus.NUMCFD_1}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="CODIGO">CODIGO:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ECODIGODetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="CODIGO" id="CODIGO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECODIGODetalleCuentasPorCobrarVisorus.CODIGO}}" aria-required="true" aria-describedby="CODIGO-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="CODIGO-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ECODIGODetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="CODIGO" id="CODIGO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECODIGODetalleCuentasPorCobrarVisorus.CODIGO}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="DESCRIPCION">DESCRIPCION:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EDESCRIPCIONDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="DESCRIPCION" id="DESCRIPCION" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EDESCRIPCIONDetalleCuentasPorCobrarVisorus.DESCRIPCION}}" aria-required="true" aria-describedby="DESCRIPCION-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="DESCRIPCION-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EDESCRIPCIONDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="DESCRIPCION" id="DESCRIPCION" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EDESCRIPCIONDetalleCuentasPorCobrarVisorus.DESCRIPCION}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="UNIDAD">UNIDAD:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EUNIDADDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="UNIDAD" id="UNIDAD" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EUNIDADDetalleCuentasPorCobrarVisorus.UNIDAD}}" aria-required="true" aria-describedby="UNIDAD-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="UNIDAD-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EUNIDADDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="UNIDAD" id="UNIDAD" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EUNIDADDetalleCuentasPorCobrarVisorus.UNIDAD}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="CANTIDAD">CANTIDAD:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ECANTIDADDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="CANTIDAD" id="CANTIDAD" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECANTIDADDetalleCuentasPorCobrarVisorus.CANTIDAD}}" aria-required="true" aria-describedby="CANTIDAD-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="CANTIDAD-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ECANTIDADDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="CANTIDAD" id="CANTIDAD" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECANTIDADDetalleCuentasPorCobrarVisorus.CANTIDAD}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="PRECIO">PRECIO:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EPRECIODetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="PRECIO" id="PRECIO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EPRECIODetalleCuentasPorCobrarVisorus.PRECIO}}" aria-required="true" aria-describedby="PRECIO-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="PRECIO-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EPRECIODetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="PRECIO" id="PRECIO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EPRECIODetalleCuentasPorCobrarVisorus.PRECIO}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="PRECIOIVAIN">PRECIOIVAIN:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EPRECIOIVAINDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="PRECIOIVAIN" id="PRECIOIVAIN" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EPRECIOIVAINDetalleCuentasPorCobrarVisorus.PRECIOIVAIN}}" aria-required="true" aria-describedby="PRECIOIVAIN-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="PRECIOIVAIN-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EPRECIOIVAINDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="PRECIOIVAIN" id="PRECIOIVAIN" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EPRECIOIVAINDetalleCuentasPorCobrarVisorus.PRECIOIVAIN}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="DESCUENTO_1">DESCUENTO_1:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EDESCUENTO_1DetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="DESCUENTO_1" id="DESCUENTO_1" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EDESCUENTO_1DetalleCuentasPorCobrarVisorus.DESCUENTO_1}}" aria-required="true" aria-describedby="DESCUENTO_1-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="DESCUENTO_1-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EDESCUENTO_1DetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="DESCUENTO_1" id="DESCUENTO_1" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EDESCUENTO_1DetalleCuentasPorCobrarVisorus.DESCUENTO_1}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="IMPORTE">IMPORTE:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EIMPORTEDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="IMPORTE" id="IMPORTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EIMPORTEDetalleCuentasPorCobrarVisorus.IMPORTE}}" aria-required="true" aria-describedby="IMPORTE-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="IMPORTE-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EIMPORTEDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="IMPORTE" id="IMPORTE" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EIMPORTEDetalleCuentasPorCobrarVisorus.IMPORTE}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="TASA">TASA:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ETASADetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="TASA" id="TASA" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ETASADetalleCuentasPorCobrarVisorus.TASA}}" aria-required="true" aria-describedby="TASA-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="TASA-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ETASADetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="TASA" id="TASA" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ETASADetalleCuentasPorCobrarVisorus.TASA}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="IEPS_1">IEPS_1:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EIEPS_1DetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="IEPS_1" id="IEPS_1" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EIEPS_1DetalleCuentasPorCobrarVisorus.IEPS_1}}" aria-required="true" aria-describedby="IEPS_1-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="IEPS_1-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EIEPS_1DetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="IEPS_1" id="IEPS_1" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EIEPS_1DetalleCuentasPorCobrarVisorus.IEPS_1}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="VIEPS">VIEPS:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.EVIEPSDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="VIEPS" id="VIEPS" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EVIEPSDetalleCuentasPorCobrarVisorus.VIEPS}}" aria-required="true" aria-describedby="VIEPS-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="VIEPS-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.EVIEPSDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="VIEPS" id="VIEPS" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.EVIEPSDetalleCuentasPorCobrarVisorus.VIEPS}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NUMMOVCFD">NUMMOVCFD:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENUMMOVCFDDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NUMMOVCFD" id="NUMMOVCFD" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMMOVCFDDetalleCuentasPorCobrarVisorus.NUMMOVCFD}}" aria-required="true" aria-describedby="NUMMOVCFD-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NUMMOVCFD-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENUMMOVCFDDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NUMMOVCFD" id="NUMMOVCFD" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMMOVCFDDetalleCuentasPorCobrarVisorus.NUMMOVCFD}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="NUMDTMCFD">NUMDTMCFD:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ENUMDTMCFDDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="NUMDTMCFD" id="NUMDTMCFD" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMDTMCFDDetalleCuentasPorCobrarVisorus.NUMDTMCFD}}" aria-required="true" aria-describedby="NUMDTMCFD-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="NUMDTMCFD-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ENUMDTMCFDDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="NUMDTMCFD" id="NUMDTMCFD" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ENUMDTMCFDDetalleCuentasPorCobrarVisorus.NUMDTMCFD}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="CANTIDADM">CANTIDADM:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ECANTIDADMDetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="CANTIDADM" id="CANTIDADM" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECANTIDADMDetalleCuentasPorCobrarVisorus.CANTIDADM}}" aria-required="true" aria-describedby="CANTIDADM-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="CANTIDADM-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ECANTIDADMDetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="CANTIDADM" id="CANTIDADM" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECANTIDADMDetalleCuentasPorCobrarVisorus.CANTIDADM}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="COSTO">COSTO:</label>
+							{{if .DetalleCuentasPorCobrarVisorus.ECOSTODetalleCuentasPorCobrarVisorus.IEstatus}}
+								<div class="col-sm-5 has-feedback has-error">
+									<input type="text" name="COSTO" id="COSTO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECOSTODetalleCuentasPorCobrarVisorus.COSTO}}" aria-required="true" aria-describedby="COSTO-error" aria-invalid="true" readonly>
+									<span class="glyphicon form-control-feedback glyphicon-remove"></span>
+									<em id="COSTO-error" class="error help-block">{{.DetalleCuentasPorCobrarVisorus.ECOSTODetalleCuentasPorCobrarVisorus.IMsj}}</em>
+								</div>
+							{{else}}
+								<div class="col-sm-5">
+									<input type="text" name="COSTO" id="COSTO" class="form-control" value="{{.DetalleCuentasPorCobrarVisorus.ECOSTODetalleCuentasPorCobrarVisorus.COSTO}}" readonly>
+								</div>
+							{{end}}
+						</div>
+					
+
+
+				<div class="form-group">
+					<div class="col-md-9 text-right">
+							<button type="button" onclick="window.location.href = '/DetalleCuentasPorCobrarVisoruss';" class="btn btn-default btn-lg">Index</button>
+							<button type="button" onclick="EditaDetalleCuentasPorCobrarVisorus('Detalle')" class="btn btn-primary btn-lg">Edita</button>
+							<button type="button" onclick="window.location.href = '/DetalleCuentasPorCobrarVisoruss/alta';" class="btn btn-success btn-lg">Nuevo</button>
+					</div>
+				</div>
+		</form>
+	</div>
+</body>
+
+<footer>
+
+	{{template "footer_layout"}}
+
+</footer>
+
+<!-- FIN BODY -->
+
+<!-- FIN PAGINA -->
+</html>

@@ -1,0 +1,53 @@
+<!-- ############################## <  VISTA  > #####################################-->
+<!-- ############################## <  Facturar.html  > #####################################-->
+<!-- ############################## <  VISTA GENERAL > #####################################-->
+
+<!-- INICIO PAGINA -->
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- INICIO CABECERA ################################################################################-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="icon" type="image/png" href="../img/k.ico" />
+    <!--#################### ESTILOS GENERALES #########################-->
+    {{template "styles_layout"}}
+    <!--#################### TUS ESTILOS ###############################-->
+	
+    <!--#################### SCRIPTS GENERALES #########################-->
+    {{template "scripts_layout"}}
+    <!--#################### TUS SCRIPTS #########################-->
+	   <!--script src="../../Locales/DetalleCuentasPorCobrarVisorus/js/DetalleCuentasPorCobrarVisorusIndex.js"></script-->
+
+       <!--#################### CABECERA #########################-->
+    {{template "header_layout" .}}
+</head>
+<!-- FINAL CABECERA ###################################################################################-->
+
+<!-- INICIO BODY -->
+<body>
+	
+    {{template "menu_layout" }}
+    <h3>FACTURAR</h3>
+    <form>
+        <div class="form-group">
+            <label for="serie">SERIE:</label>
+            <input type="text" class="form-control" id="serie">
+        </div>
+        <div class="form-group">
+            <label for="folio">FOLIO:</label>
+            <input type="text" class="form-control" id="folio">
+        </div>
+        <button type="button" onclick="window.location.href = '/DetalleCuentasPorCobrarVisorus/alta';" >BUSCAR </button>
+    </form>
+
+</body>
+<footer>
+        
+            {{template "footer_layout"}}
+        
+</footer>
